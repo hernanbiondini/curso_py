@@ -1,0 +1,15 @@
+Las clases `OAuth2PasswordBearer` y `OAuth2PasswordRequestForm` son parte del paquete `fastapi.security` en FastAPI, un framework de desarrollo web en Python. Estas clases están relacionadas con la autenticación y autorización basada en el protocolo OAuth2.
+
+1. `OAuth2PasswordBearer`:
+   La clase `OAuth2PasswordBearer` se utiliza para implementar la autenticación basada en contraseñas en una API protegida con OAuth2. En OAuth2, este flujo de autenticación se conoce como "Resource Owner Password Credentials". Básicamente, permite a los clientes de la API autenticarse proporcionando un nombre de usuario y una contraseña, y recibir un token de acceso válido para acceder a recursos protegidos.
+
+   Para utilizar `OAuth2PasswordBearer`, normalmente se instancia con el parámetro `tokenUrl`, que especifica la URL donde los clientes pueden enviar sus credenciales para obtener el token de acceso. A continuación, se puede utilizar como un decorador en las rutas que requieren autenticación para verificar la validez del token de acceso proporcionado en la solicitud.
+
+2. `OAuth2PasswordRequestForm`:
+   La clase `OAuth2PasswordRequestForm` es una subclase de la clase `RequestForm` de FastAPI y se utiliza para parsear y validar el formulario enviado por los clientes en una solicitud de autenticación basada en contraseñas.
+
+   En el flujo de autenticación de "Resource Owner Password Credentials" de OAuth2, los clientes deben enviar las credenciales (nombre de usuario y contraseña) en el cuerpo de la solicitud en lugar de utilizar encabezados de autorización. `OAuth2PasswordRequestForm` facilita la extracción y validación de estos datos del formulario enviado por el cliente.
+
+   Esta clase se utiliza junto con `OAuth2PasswordBearer`. Cuando un cliente envía una solicitud de autenticación a la URL especificada en `tokenUrl`, el endpoint correspondiente puede usar `OAuth2PasswordRequestForm` para acceder a los campos del formulario, como el nombre de usuario y la contraseña, y validarlos antes de generar un token de acceso.
+
+En resumen, `OAuth2PasswordBearer` se encarga de la autenticación basada en contraseñas y la verificación del token de acceso en las rutas protegidas, mientras que `OAuth2PasswordRequestForm` se utiliza para extraer y validar los datos del formulario de autenticación en el proceso de emisión de tokens de acceso.
