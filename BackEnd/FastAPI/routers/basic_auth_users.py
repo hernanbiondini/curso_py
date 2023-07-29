@@ -61,7 +61,7 @@ async def login(form:OAuth2PasswordRequestForm = Depends()):
     user_db = users_db.get(form.username)
     if not user_db:
         raise HTTPException(status_code=400, detail="El usuario no es correcto")
-    user =  search_user(form.username)
+    user =  search_user_db(form.username)
     if not form.password == user.password:
         raise HTTPException(status_code=400, detail="La contraseña no es la correcta")
     return {"access_token": user.username, "token_type":"bearer"}
